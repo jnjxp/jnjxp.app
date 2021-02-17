@@ -1,0 +1,32 @@
+{
+    "name": "jnjxp/app",
+    "description": "jnjxp application",
+    "type": "library",
+    "require": {
+        "container-interop/service-provider": "^0.4.0",
+        "fig/http-message-util": "^1.1",
+        "laminas/laminas-httphandlerrunner": "^1.3",
+        "nyholm/psr7-server": "^1.0",
+        "psr/container": "^1.0",
+        "psr/http-factory": "^1.0",
+        "psr/http-message": "^1.0",
+        "psr/http-server-handler": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "jake johns",
+            "email": "jake@jakejohns.net"
+        }
+    ],
+    "require-dev": {
+        "laminas/laminas-diactoros": "^2.5"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Jnjxp\\App\\": "src/"
+        }
+    }
+}
