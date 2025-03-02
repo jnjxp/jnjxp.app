@@ -6,23 +6,19 @@ namespace Jnjxp\App;
 
 use Laminas\HttpHandlerRunner\Emitter\EmitterInterface;
 use Laminas\HttpHandlerRunner\RequestHandlerRunner;
-use Nyholm\Psr7Server\ServerRequestCreatorInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 class App implements AppInterface
 {
-    protected $emitter;
-
     protected $serverRequestCreator;
 
     protected $errorGenerator;
 
     public function __construct(
-        EmitterInterface $emitter,
-        ServerRequestCreatorInterface $serverRequestCreator,
+        protected EmitterInterface $emitter,
+        callable $serverRequestCreator,
         callable $errorGenerator
     ) {
-        $this->emitter = $emitter;
         $this->serverRequestCreator = $serverRequestCreator;
         $this->errorGenerator = $errorGenerator;
     }
@@ -38,7 +34,7 @@ class App implements AppInterface
         return new RequestHandlerRunner(
             $pipe,
             $this->emitter,
-            [$this->serverRequestCreator, 'fromGlobals'],
+            $this->serverRequestCreator,
             $this->errorGenerator
         );
     }

@@ -18,12 +18,12 @@ class ErrorGenerator implements StatusCodeInterface
         $this->responseFactory = $responseFactory;
     }
 
-    public function __invoke(Throwable $e) : ResponseInterface
+    public function __invoke(Throwable $err) : ResponseInterface
     {
         $response = $this->createResponse();
 
         $response->getBody()
-            ->write(sprintf('An error occurred: %s', $e->getMessage()));
+            ->write(sprintf('An error occurred: %s', $err->getMessage()));
 
         return $response;
     }
