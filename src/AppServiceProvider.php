@@ -6,8 +6,6 @@ namespace Jnjxp\App;
 
 use Interop\Container\ServiceProviderInterface;
 use Laminas\HttpHandlerRunner\Emitter\EmitterInterface;
-use Nyholm\Psr7Server\ServerRequestCreator;
-use Nyholm\Psr7Server\ServerRequestCreatorInterface;
 
 class AppServiceProvider implements ServiceProviderInterface
 {
@@ -18,8 +16,6 @@ class AppServiceProvider implements ServiceProviderInterface
             AppInterface::class => AppFactory::class,
             EmitterInterface::class => AppFactory::class,
             ErrorGenerator::class => AppFactory::class,
-            ServerRequestCreator::class => ServerRequestCreatorFactory::class,
-            ServerRequestCreatorInterface::class => ServerRequestCreatorFactory::class,
         ];
     }
 

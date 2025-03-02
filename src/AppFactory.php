@@ -6,13 +6,13 @@ namespace Jnjxp\App;
 
 use Laminas\HttpHandlerRunner\Emitter\EmitterInterface;
 use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
-use Nyholm\Psr7Server\ServerRequestCreator;
-use Nyholm\Psr7Server\ServerRequestCreatorInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 
 class AppFactory
 {
+    const SERVER_REQUEST_CREATOR = 'server-request-creator';
+
     public function __invoke(ContainerInterface $container, string $name)
     {
         switch ($name) {
@@ -36,7 +36,7 @@ class AppFactory
     {
         return new App(
             $container->get(EmitterInterface::class),
-            $container->get(ServerRequestCreatorInterface::class),
+            $container->get(self::SERVER_REQUEST_CREATOR),
             $container->get(ErrorGenerator::class)
         );
     }
